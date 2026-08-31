@@ -1,0 +1,19 @@
+services:
+  php:
+    build: .
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: unihub_root_password
+      MYSQL_DATABASE: unihub
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./unihub_database_final.sql:/docker-entrypoint-initdb.d/unihub_database_final.sql:ro
+
+volumes:
+  mysql_data:
