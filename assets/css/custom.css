@@ -271,7 +271,7 @@ a:hover { color: var(--brand-900); }
   font-family: "Lexend", system-ui, sans-serif;
   font-weight: 800;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
 }
 .uh-sidebar-brand .name {
   font-family: "Lexend", system-ui, sans-serif;
@@ -442,6 +442,10 @@ a:hover { color: var(--brand-900); }
   position: relative;
   overflow: hidden;
 }
+/* Keep headings and brand text light on the dark auth panel */
+.uh-auth-side h1,
+.uh-auth-side h2,
+.uh-auth-side .font-display { color: #fff; }
 .uh-auth-side::after {
   content: "";
   position: absolute;
@@ -597,12 +601,23 @@ a:hover { color: var(--brand-900); }
   margin: 1.25rem 0;
 }
 .uh-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--accent-dark);
   font-weight: 700;
   margin-bottom: 0.3rem;
+}
+.uh-kicker::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  flex-shrink: 0;
 }
 .uh-tab-pills .nav-link {
   border-radius: 8px;
@@ -666,3 +681,6 @@ a:hover { color: var(--brand-900); }
   position: relative;
   overflow: hidden;
 }
+/* Keep hero display text light on the dark hero panel */
+.lp-hero h1,
+.lp-hero .font-display { color: #fff; }

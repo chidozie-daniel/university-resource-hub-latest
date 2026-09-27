@@ -64,7 +64,7 @@ $subLine = htmlspecialchars($user['email'] ?? '');
 
   <aside class="uh-sidebar" id="uhSidebar">
     <div class="uh-sidebar-brand">
-      <div class="mark">U</div>
+      <div class="mark"><i class="bi bi-buildings"></i></div>
       <div>
         <div class="name">UniHub</div>
         <div class="role-tag"><?= htmlspecialchars($roleLabel) ?></div>

@@ -12,7 +12,7 @@ require __DIR__ . '/includes/header.php';
 <nav class="lp-nav">
   <div class="container d-flex align-items-center justify-content-between" style="max-width:1120px;">
     <a href="/index.php" class="d-flex align-items-center gap-2 text-decoration-none text-dark">
-      <span class="d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-family:Lexend,sans-serif;font-weight:800;">U</span>
+      <span class="d-inline-flex align-items-center justify-content-center" style="width:34px;height:34px;border-radius:9px;background:var(--accent);color:#fff;font-size:18px;"><i class="bi bi-buildings"></i></span>
       <span class="font-display fw-bold" style="font-size:16.5px;">UniHub</span>
     </a>
     <div class="d-flex gap-2">
@@ -37,9 +37,9 @@ require __DIR__ . '/includes/header.php';
           <a href="#features" class="btn btn-lg" style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;">See what's inside</a>
         </div>
         <div class="d-flex flex-wrap gap-4 mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,.12);">
-          <div><div class="fs-4 fw-bold font-display">186+</div><div class="fs-sm" style="color:rgba(255,255,255,.55);">Active courses</div></div>
-          <div><div class="fs-4 fw-bold font-display">4,286</div><div class="fs-sm" style="color:rgba(255,255,255,.55);">Students</div></div>
-          <div><div class="fs-4 fw-bold font-display">214</div><div class="fs-sm" style="color:rgba(255,255,255,.55);">Faculty</div></div>
+          <div><div class="fs-4 fw-bold font-display" data-count="186" data-suffix="+">186+</div><div class="fs-sm" style="color:rgba(255,255,255,.55);">Active courses</div></div>
+          <div><div class="fs-4 fw-bold font-display" data-count="4286">4,286</div><div class="fs-sm" style="color:rgba(255,255,255,.55);">Students</div></div>
+          <div><div class="fs-4 fw-bold font-display" data-count="214">214</div><div class="fs-sm" style="color:rgba(255,255,255,.55);">Faculty</div></div>
         </div>
       </div>
       <div class="col-lg-5">
@@ -215,5 +215,57 @@ require __DIR__ . '/includes/header.php';
     <a class="fs-sm" href="/login.php">Sign in</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  var els = document.querySelectorAll('[data-count]');
+  if (!els.length) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var format = function (n) { return n.toLocaleString('en-US'); };
+
+  function run(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+    var suffix = el.getAttribute('data-suffix') || '';
+
+    if (reduce) {
+      el.textContent = format(target) + suffix;
+      return;
+    }
+
+    var duration = 1400;
+    var startTime = null;
+
+    function step(ts) {
+      if (startTime === null) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      el.textContent = format(Math.round(target * eased)) + suffix;
+      if (p < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = format(target) + suffix;
+      }
+    }
+
+    el.textContent = '0' + suffix;
+    requestAnimationFrame(step);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          run(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    els.forEach(function (el) { observer.observe(el); });
+  } else {
+    els.forEach(run);
+  }
+})();
+</script>
 </body>
 </html>

@@ -79,10 +79,10 @@ require __DIR__ . '/includes/header.php';
 <div class="uh-auth-wrap">
   <div class="uh-auth-side">
     <div>
-      <div class="d-flex align-items-center gap-2 mb-5">
-        <div style="width:38px;height:38px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Lexend';font-weight:800;">U</div>
+      <a href="/index.php" class="d-flex align-items-center gap-2 mb-5 text-decoration-none" style="color:inherit;">
+        <div style="width:38px;height:38px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px;"><i class="bi bi-buildings"></i></div>
         <span class="font-display fw-bold fs-4">UniHub</span>
-      </div>
+      </a>
       <h1 class="font-display fw-bold display-6 mb-3">Join your Learning Hub.</h1>
       <p class="opacity-75" style="max-width:420px;">Register with your official student details to access courses and resources.</p>
     </div>
@@ -90,6 +90,7 @@ require __DIR__ . '/includes/header.php';
   </div>
   <div class="uh-auth-form">
     <div class="w-100" style="max-width:380px;">
+      <a href="/index.php" class="d-inline-flex align-items-center gap-1 fs-sm mb-3"><i class="bi bi-arrow-left"></i> Back to home</a>
       <h2 class="font-display fw-bold h3 mb-1">Create student account</h2>
       <p class="text-muted-2 fs-sm mb-4">Lecturer and admin accounts are provisioned by administration.</p>
 
