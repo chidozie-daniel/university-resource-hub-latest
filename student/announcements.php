@@ -63,7 +63,7 @@ require __DIR__ . '/../includes/navbar.php';
 <?php foreach ($list as $a): ?>
   <a href="?id=<?= (int)$a['announcement_id'] ?>" class="card mb-2 uh-hover d-block text-decoration-none <?= $a['priority'] ? 'uh-priority-bar' : '' ?>">
     <div class="card-body py-3">
-      <div class="fw-semibold text-dark mb-1"><?= $a['priority'] ? '<span class="badge badge-soft-danger me-2">Important</span>' : ''><?= htmlspecialchars($a['title']) ?></div>
+      <div class="fw-semibold text-dark mb-1"><?= $a['priority'] ? '<span class="badge badge-soft-danger me-2">Important</span>' : '' ?><?= htmlspecialchars($a['title']) ?></div>
       <p class="fs-sm text-muted-2 mb-1"><?= htmlspecialchars(mb_substr($a['content'], 0, 140)) ?>…</p>
       <div class="fs-xs text-faint"><?= date('M j, Y', strtotime($a['created_at'])) ?></div>
     </div>
